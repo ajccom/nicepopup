@@ -22,7 +22,7 @@
     .alert-content.favor {color: pink}
     
     /*dialog style*/
-    .dialog1, .dialog2, .dialog3 {padding: 30px;}
+    .dialog1, .dialog2, .dialog3, .dialog5 {padding: 30px;}
     .dialog4 {padding: 45px 0 85px; width: 400px}
     @media screen and (max-width:600px) {
       .dialog4 {width: 300px}
@@ -158,6 +158,20 @@ nicePopup.alert.open('您的举动已经被您家贤内助发现，&lt;br />现�
 //取消按钮事件
 nicePopup.close()</pre>
       </div>
+      <hr />
+      <div class="section">
+        <h2>弹出层动画效果</h2>
+        <div class="btn-box">
+          <a href="javascript:" class="btn" id="open-popin">POP IN</a>
+          <a href="javascript:" class="btn" id="open-slide">SLIDE</a>
+          <a href="javascript:" class="btn" id="open-fadein">FADE IN</a>
+          <a href="javascript:" class="btn" id="open-fall">FALL</a>
+        </div>
+        <div class="dialog5 nice-popup">
+          当前动画效果：<br />
+          <span class="highlight"></span>
+        </div>
+      </div>
       <script src="nice-popup.js"></script>
       <script>
         function bindClick (selector, fn) {
@@ -230,6 +244,27 @@ nicePopup.close()</pre>
         bindClick('#open-mulit-popup', function () {
           nicePopup.dialog.open('.dialog4')
         })
+        
+        bindClick('#open-popin', function () {
+          document.querySelector('.dialog5 .highlight').innerHTML = 'effect: "popin"'
+          nicePopup.dialog.open('.dialog5', {effect: 'popin'})
+        })
+        
+        bindClick('#open-slide', function () {
+          document.querySelector('.dialog5 .highlight').innerHTML = 'effect: "slide"'
+          nicePopup.dialog.open('.dialog5', {effect: 'slide'})
+        })
+        
+        bindClick('#open-fadein', function () {
+          document.querySelector('.dialog5 .highlight').innerHTML = 'effect: "fadein"'
+          nicePopup.dialog.open('.dialog5', {effect: 'fadein'})
+        })
+        
+        bindClick('#open-fall', function () {
+          document.querySelector('.dialog5 .highlight').innerHTML = 'effect: "fall"'
+          nicePopup.dialog.open('.dialog5', {effect: 'fall'})
+        })
+        
       </script>
       
       <footer class="site-footer">
