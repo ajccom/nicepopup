@@ -1,20 +1,30 @@
-.popup-ready {position: fixed; top: -200%; left: 50%; z-index: 1000; transform: translate(-50%, -50%); transform-origin: 50% 50%; box-shadow: 0 0 8px 1px #000; background: #fff; padding: 5px 0; border-radius: 10px;
+.popup-ready {position: fixed; top: -200%; left: 50%; z-index: 1000; transform: translate(-50%, -50%); transform-origin: 50% 50%; box-shadow: 0 0 8px 1px #000; background: #fff; border-radius: 10px;
   animation-timing-function: ease-in;
   animation-duration: 225ms;
 }
 .popup-ready.open {z-index: 1000; top: 50%}
-.popup-ready .popup-close {cursor: pointer; position: absolute; right: 3px; top: 3px; width: 20px; height: 20px; text-indent: -999px; font-size: 0; border-radius: 10px; background: red; z-index: 2; border: 1px solid #fff;}
+.popup-ready .popup-close {cursor: pointer; position: absolute; right: 3px; top: 3px; width: 20px; height: 20px; text-indent: -999px; font-size: 0; border-radius: 10px; background: red; z-index: 2; border: 1px solid #fff; text-decoration: none}
+.popup-ready .popup-close::after {width: 18px; height: 18px; content: '×'; text-indent: 0; font-size: 16px; color: #fff; display: block; text-align: center; line-height: 18px;}
 .popup-ready .popup-close:focus {border: 1px dashed #fff}
 .alert-content,
-.confirm-content {width: 400px; padding: 40px 0 80px; text-align: center; position: relative}
-.alert-content .type-icon {display: none}
-.alert-content.success .type-icon {display: inline; background: green; padding: 5px;}
-.alert-content.fail .type-icon {display: inline; background: yellow; padding: 5px;}
-.alert-content.wraning .type-icon {display: inline; background: red; padding: 5px;}
-.alert-content.wrong .type-icon {display: inline; background: black; padding: 5px;}
-.nice-popup .popup-btns {position: absolute; bottom: 0; left: 0; padding-top: 5px; border-top: 1px solid #bbb; text-align: center; width: 100%}
+.confirm-content {width: 400px; padding: 45px 0 85px; text-align: center; position: relative}
+@media screen and (max-width:600px) {
+  .popup-ready {width: 80%}
+  .alert-content,
+  .confirm-content {width: 100%;}
+}
+.alert-content .txt,
+.confirm-content .txt {position: relative; z-index: 1}
+.alert-content .type-icon {position: absolute; left: 10px; bottom: 0px; line-height: 1.2em;font-size: 120px; z-index: 0}
+.alert-content.success .type-icon::after {content: '✓'; color: #dfd}
+.alert-content.wraning .type-icon::after {content: '!'; color: #ee9; font-style: italic}
+.alert-content.wrong .type-icon::after {content: '✗'; color: #fdd}
+.alert-content.success {color: green}
+.alert-content.wraning {color: #9E9E04}
+.alert-content.wrong {color: red}
+.nice-popup .popup-btns {position: absolute; bottom: 0; left: 0; padding: 5px 0; border-top: 1px solid #bbb; text-align: center; width: 100%}
 .nice-popup .popup-btns .ok,
-.nice-popup .popup-btns .cancel {cursor: pointer; display: inline-block; width: 120px; height: 40px; line-height: 40px; margin: 0 30px; border-radius: 10px; font-size: 16px; font-family: '微软雅黑'; border: 1px solid #fff; text-decoration: none}
+.nice-popup .popup-btns .cancel {cursor: pointer; display: inline-block; width: 40%; height: 40px; line-height: 40px; margin: 0 5%; border-radius: 10px; font-size: 16px; font-family: '微软雅黑'; border: 1px solid #fff; text-decoration: none; box-sizing: border-box}
 .nice-popup .popup-btns .ok:hover,
 .nice-popup .popup-btns .cancel:hover {opacity: 0.8}
 .nice-popup .popup-btns .ok:active,

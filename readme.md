@@ -119,7 +119,7 @@ open | Text:String[, Type:String] | 弹出一个 alert 弹出层
 
 **注意 alert 并没有 `close` 方法，可以使用 `nicePoup.close` 方法关闭。**
 
-`open` 方法的第二个参数 Type 可以为空。而除了 `success/fail/wraning/wrong` 四种状态之外，用户可以使用任意字符串作为参数，产生更多的状态，但需要在 CSS 中配置对应样式。
+`open` 方法的第二个参数 Type 可以为空。而除了 `success/wraning/wrong` 三种状态之外，用户可以使用任意字符串作为参数，产生更多的状态，但需要在 CSS 中配置对应样式。
 
 <br />
 

@@ -181,10 +181,12 @@
       //处理 effect
       if (cfg.effect) {
         _addClass(this.wrapper, cfg.effect)
-        _removeClass(this.wrapper, 'reverse')
       } else {
+        //移除 effect
+        this.wrapper.className = 'nice-popup popup-ready'
         _addClass(this.wrapper, 'open')
       }
+      _removeClass(this.wrapper, 'reverse')
       
       //处理关闭按钮的状态
       if (cfg.closeable === false) {
@@ -404,7 +406,7 @@
      */
     function open (klass, args) {
       var dom = typeof klass === 'string' ? document.querySelector(klass) : (typeof klass === 'object' ? klass : null),
-        cfg = _extend(defaultConfig, args)
+        cfg = _extend({}, defaultConfig, args)
       if (dom) {
         getPopup(dom).open(cfg)
       }
