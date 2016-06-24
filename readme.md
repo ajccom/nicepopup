@@ -197,6 +197,33 @@ nicePopup.config({
 
 <br />
 
+## 按钮与自动聚焦
+
+组件中默认有按钮样式。当对一个 dialog 添加按钮的时候可以使用默认按钮结构与样式，快速方便。
+
+```html
+<div class="popup-btns">
+  <a class="ok" href="javascript:">去支付</a>
+  <a class="cancel" href="javascript:">取消</a>
+</div>
+```
+
+![qq 20160624141457](https://cloud.githubusercontent.com/assets/2509085/16329669/51873302-3a16-11e6-8667-a81e455dcc31.png)
+###### 来自 DEMO 页
+
+需要注意的是，按钮元素尽量使用赋予 `href` 属性的 `a` 元素。因为这样可以更加容易实现自动聚焦功能。
+
+Nice Popup 会在弹出后尝试自动聚焦 `.ok` 的元素。
+
+```javascript
+var okBtn = this.dom.querySelector('.ok')
+okBtn && okBtn.focus()
+```
+
+当弹出层获得焦点后，可以方便习惯键盘操作的用户执行一下步任务，而不是一直按 `Tab` 键寻找元素。
+
+<br />
+
 ## Thanks
 
 <br />
