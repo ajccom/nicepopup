@@ -180,11 +180,11 @@
       }
       
       //处理 effect
+      //先移除 effect
+      this.wrapper.className = 'nice-popup popup-ready'
       if (cfg.effect) {
         _addClass(this.wrapper, cfg.effect)
       } else {
-        //移除 effect
-        this.wrapper.className = 'nice-popup popup-ready'
         _addClass(this.wrapper, 'open')
       }
       _removeClass(this.wrapper, 'reverse')
@@ -203,7 +203,6 @@
     close: function (isSave) {
       var cfg = this.cfg || defaultConfig
       if (cfg.modal) {
-        console.log(1)
         mask.close && mask.close()
       }
       

@@ -1,4 +1,4 @@
-.popup-ready {position: fixed; top: -200%; left: 50%; z-index: 1000; transform: translate(-50%, -50%); transform-origin: 50% 50%; box-shadow: 0 0 8px 1px #000; background: #fff; border-radius: 10px;
+.popup-ready {position: fixed; top: -200%; left: 50%; z-index: 1000; transform: translate3d(-50%, -50%, 0); transform-origin: 50% 50%; box-shadow: 0 0 8px 1px #000; background: #fff; border-radius: 10px;
   animation-timing-function: ease-in;
   animation-duration: 225ms;
 }
@@ -46,27 +46,27 @@
   animation-duration: 225ms;
 }
 .nice-mask.show {
-  animation-name: fadein;
+  animation-name: show;
   top: 0px; opacity: 1;
 }
 .nice-mask.show.reverse {
-  animation-name: fadeout;
+  animation-name: hide;
   top: -5000px; opacity: 0;
 }
-@-webkit-keyframes fadein {
+@-webkit-keyframes show {
     0% {top: 0px; opacity: 0;}
     100% {top: 0px; opacity: 1;}
 }
-@-moz-keyframes fadein {
+@-moz-keyframes show {
     0% {top: 0px; opacity: 0;}
     100% {top: 0px; opacity: 1;}
 }
-@-webkit-keyframes fadeout {
+@-webkit-keyframes hide {
     0% {top: 0px; opacity: 1;}
     99% {top: 0px; opacity: 0;}
     100% {top: -5000px; opacity: 0;}
 }
-@-moz-keyframes fadeout {
+@-moz-keyframes hide {
     0% {top: 0px; opacity: 1;}
     99% {top: 0px; opacity: 0;}
     100% {top: -5000px; opacity: 0;}
@@ -74,35 +74,117 @@
 
 .nice-popup.popin {
   animation-name: popin;
-  transform: translate(-50%, -50%) scale(1); opacity: 1; top: 50%
+  transform: translate3d(-50%, -50%, 0) scale(1); opacity: 1; top: 50%
 }
 .nice-popup.popin.reverse {
   animation-name: popout;
-  transform: translate(-50%, -50%) scale(.8); opacity: 0; top: -200%
+  transform: translate3d(-50%, -50%, 0) scale(.8); opacity: 0; top: -200%
 }
 @-webkit-keyframes popin {
-    0% {transform: translate(-50%, -50%) scale(.8); opacity: 0; top: 50%}
-    20% {transform: translate(-50%, -50%) scale(1.2); opacity: 0.2; top: 50%}
-    40% {transform: translate(-50%, -50%) scale(.9); opacity: 0.4; top: 50%}
-    70% {transform: translate(-50%, -50%) scale(1.1); opacity: 0.7; top: 50%}
-    100% {transform: translate(-50%, -50%) scale(1); opacity: 1; top: 50%}
+    0% {transform: translate3d(-50%, -50%, 0) scale(.8); opacity: 0; top: 50%}
+    20% {transform: translate3d(-50%, -50%, 0) scale(1.1); opacity: 0.2; top: 50%}
+    40% {transform: translate3d(-50%, -50%, 0) scale(.9); opacity: 0.4; top: 50%}
+    100% {transform: translate3d(-50%, -50%, 0) scale(1); opacity: 1; top: 50%}
 }
 @-moz-keyframes popin {
-    0% {transform: translate(-50%, -50%) scale(.8); opacity: 0; top: 50%}
-    40% {transform: translate(-50%, -50%) scale(1.2); opacity: 0.4; top: 50%}
-    50% {transform: translate(-50%, -50%) scale(.9); opacity: 0.5; top: 50%}
-    90% {transform: translate(-50%, -50%) scale(1.1); opacity: 0.9; top: 50%}
-    100% {transform: translate(-50%, -50%) scale(1); opacity: 1; top: 50%}
+    0% {transform: translate3d(-50%, -50%, 0) scale(.8); opacity: 0; top: 50%}
+    20% {transform: translate3d(-50%, -50%, 0) scale(1.1); opacity: 0.2; top: 50%}
+    40% {transform: translate3d(-50%, -50%, 0) scale(.9); opacity: 0.4; top: 50%}
+    100% {transform: translate3d(-50%, -50%, 0) scale(1); opacity: 1; top: 50%}
 }
 @-webkit-keyframes popout {
-    0% {transform: translate(-50%, -50%) scale(1); opacity: 1; top: 50%}
-    10% {transform: translate(-50%, -50%) scale(1.1); opacity: .9; top: 50%}
-    99% {transform: translate(-50%, -50%) scale(.8); opacity: 0; top: 50%}
-    100% {transform: translate(-50%, -50%) scale(.8); opacity: 0; top: -200%}
+    0% {transform: translate3d(-50%, -50%, 0) scale(1); opacity: 1; top: 50%}
+    10% {transform: translate3d(-50%, -50%, 0) scale(1.1); opacity: .9; top: 50%}
+    99% {transform: translate3d(-50%, -50%, 0) scale(.8); opacity: 0; top: 50%}
+    100% {transform: translate3d(-50%, -50%, 0) scale(.8); opacity: 0; top: -200%}
 }
 @-moz-keyframes popout {
-    0% {transform: translate(-50%, -50%) scale(1); opacity: 1; top: 50%}
-    10% {transform: translate(-50%, -50%) scale(1.1); opacity: .9; top: 50%}
-    99% {transform: translate(-50%, -50%) scale(.8); opacity: 0; top: 50%}
-    100% {transform: translate(-50%, -50%) scale(.8); opacity: 0; top: -200%}
+    0% {transform: translate3d(-50%, -50%, 0) scale(1); opacity: 1; top: 50%}
+    10% {transform: translate3d(-50%, -50%, 0) scale(1.1); opacity: .9; top: 50%}
+    99% {transform: translate3d(-50%, -50%, 0) scale(.8); opacity: 0; top: 50%}
+    100% {transform: translate3d(-50%, -50%, 0) scale(.8); opacity: 0; top: -200%}
+}
+.nice-popup.slide {
+  animation-name: slidedown;
+  opacity: 1; top: 50%
+}
+.nice-popup.slide.reverse {
+  animation-name: slideup;
+  opacity: 0; top: -200%
+}
+@-webkit-keyframes slidedown {
+    0% {transform: translate3d(-50%, -80%, 0); opacity: 0;}
+    100% {transform: translate3d(-50%, -50%, 0); opacity: 1;}
+}
+@-moz-keyframes slidedown {
+    0% {transform: translate3d(-50%, -80%, 0); opacity: 0;}
+    100% {transform: translate3d(-50%, -50%, 0); opacity: 1;}
+}
+@-webkit-keyframes slideup {
+    0% {transform: translate3d(-50%, -50%, 0); opacity: 1; top: 50%}
+    99% {transform: translate3d(-50%, -80%, 0); opacity: 0; top: 50%}
+    100% {transform: translate3d(-50%, -50%, 0); opacity: 0; top: -200%}
+}
+@-moz-keyframes slideup {
+    0% {transform: translate3d(-50%, -50%, 0); opacity: 1; top: 50%}
+    99% {transform: translate3d(-50%, -80%, 0); opacity: 0; top: 50%}
+    100% {transform: translate3d(-50%, -50%, 0); opacity: 0; top: -200%}
+}
+.nice-popup.fadein {
+  animation-name: fadein;
+  opacity: 1; top: 50%
+}
+.nice-popup.fadein.reverse {
+  animation-name: fadeout;
+  opacity: 0; top: -200%
+}
+@-webkit-keyframes fadein {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+@-moz-keyframes fadein {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+@-webkit-keyframes fadeout {
+    0% {opacity: 1; top: 50%}
+    99% {opacity: 0; top: 50%}
+    100% {opacity: 0; top: -200%}
+}
+@-moz-keyframes fadeout {
+    0% {opacity: 1; top: 50%}
+    99% {opacity: 0; top: 50%}
+    100% {opacity: 0; top: -200%}
+}
+.nice-popup.fall {
+  animation-name: fall;
+  opacity: 1; top: 50%
+}
+.nice-popup.fall.reverse {
+  animation-name: falldown;
+  opacity: 0; top: -200%
+}
+@-webkit-keyframes fall {
+    0% {opacity: 0; top: 0;}
+    40% {opacity: 0.8; top: 50%;}
+    70% {opacity: 0.9; top: 45%;}
+    100% {opacity: 1; top: 50%;}
+}
+@-moz-keyframes fall {
+    0% {opacity: 0; top: 0;}
+    40% {opacity: 0.8; top: 50%;}
+    70% {opacity: 0.9; top: 45%;}
+    100% {opacity: 1; top: 50%;}
+}
+@-webkit-keyframes falldown {
+    0% {opacity: 1; top: 50%;}
+    20% {opacity: .9; top: 45%;}
+    99% {opacity: 0; top: 100%;}
+    100% {opacity: 0; top: -200%;}
+}
+@-moz-keyframes falldown {
+    0% {opacity: 1; top: 50%;}
+    20% {opacity: .9; top: 45%;}
+    99% {opacity: 0; top: 100%;}
+    100% {opacity: 0; top: -200%;}
 }
