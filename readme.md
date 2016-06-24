@@ -169,6 +169,8 @@ nicePopup.config({
 })
 ```
 
+###### 注意，此时修改的是全局的动画效果。
+
 ```CSS
 .nice-popup.fade {
   animation-name: fadeIn;
@@ -185,7 +187,7 @@ nicePopup.config({
 @keyframes fadeout {
   0% {top: 0px; opacity: 1;}
   99% {top: 0px; opacity: 0;}
-  100% {top: -5000px; opacity: 0;}
+  100% {top: -200%; opacity: 0;}
 }
 ```
 
