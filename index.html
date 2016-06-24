@@ -2,16 +2,33 @@
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <title>Nicepopup by ajccom</title>
+    <title>Nice Popup by ajccom</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="style.css" media="screen">
+    <style>
+    * {outline: none}
+    pre {tab-size: 2;}
+    pre.js {background: #000; color: #fff}
+    .section {padding: 10px 0 20px}
+    .section .btn-box {padding: 5px 0}
+    .section .btn {padding: 5px 20px; font-size: 16px; border: 1px solid #eee; background: #159957; text-align: center}
+    
+    /*customize alert*/
+    .alert-content.favor .type-icon::after {content: '♥'; color: #984F5C}
+    .alert-content.favor {color: pink}
+    
+    /*dialog style*/
+    .dialog1, .dialog2, .dialog3 {padding: 30px;}
+    .highlight {color: red}
+    </style>
   </head>
   <body>
     <section class="page-header">
-      <h1 class="project-name">Nicepopup</h1>
+      <h1 class="project-name">Nice Popup</h1>
       <h2 class="project-tagline">简单的弹出层组件，支持队列弹出，对读屏软件有较好支持</h2>
       <a href="https://github.com/ajccom/nicePopup" class="btn">View on GitHub</a>
       <a href="https://github.com/ajccom/nicePopup/zipball/master" class="btn">Download .zip</a>
@@ -19,33 +36,165 @@
     </section>
 
     <section class="main-content">
-      <h3>
-<a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+      
+      <div class="section">
+        <h2>打开一个 Alert 弹出层</h2>
+        <div class="btn-box">
+          <a href="javascript:" class="btn" id="open-alert">ALERT</a>
+        </div>
+      </div>
+      <div class="section">
+        <h2>打开一个带有状态的 Alert 弹出层</h2>
+        <div class="btn-box">
+          <a href="javascript:" class="btn" id="open-success-alert">SUCCESS ALERT</a>
+          <a href="javascript:" class="btn" id="open-wraning-alert">WRANING ALERT</a>
+          <a href="javascript:" class="btn" id="open-wrong-alert">WRONG ALERT</a>
+        </div>
+      </div>
+      <div class="section">
+        <h2>打开一个自定义状态的 Alert 弹出层</h2>
+        <div class="btn-box">
+          <a href="javascript:" class="btn" id="open-customize-alert">CUSTOMIZE ALERT</a>
+        </div>
+        <pre class="js">nicePopup.alert.open('打开了一个自定义状态 Alert 弹出层', 'favor')</pre>
+        <pre>.alert-content.favor .type-icon::after {content: '♥'; color: pink}
+.alert-content.favor {color: pink}</pre>
+      </div>
+      <hr />
+      <div class="section">
+        <h2>打开一个 Confirm 弹出层，成功时计数加 1</h2>
+        <div class="btn-box">
+          <a href="javascript:" class="btn" id="open-confirm">CONFIRM</a>
+        </div>
+        <div id="count">计数：0</div>
+        <br />
+        <pre class="js">nicePopup.confirm.open('是否计数加 1 ？', function (popup) {
+  popup.close()
+  count()
+})
+function count () {
+  if (!this.countNum) {this.countNum = 0}
+  this.countNum++
+  document.getElementById('count').innerHTML = '计数：' + this.countNum
+}
+</pre>
+      </div>
+      <hr />
+      <div class="section">
+        <h2>打开一个 Dialog 弹出层</h2>
+        <div class="btn-box">
+          <a href="javascript:" class="btn" id="open-dialog">DIALOG</a>
+        </div>
+        <div class="dialog1 nice-popup">我是一个 dialog 弹出层内容。<br />我的默认打开方式是：<br /><span class="highlight">模态、popin 动画效果、展示关闭按钮、非自动关闭<span></div>
+        <pre>&lt;div class="dialog1 nice-popup">
+  我是一个 dialog 弹出层内容。
+  &lt;br />
+  我的默认打开方式是：
+  &lt;br />
+  &lt;span class="highlight">模态、popin 动画效果、展示关闭按钮、非自动关闭&lt;span>
+&lt;/div></pre>
+        <pre class="js">nicePopup.dialog.open('.dialog1')</pre>
+      </div>
+      <div class="section">
+        <h2>打开一个非模态的 Dialog 弹出层</h2>
+        <div class="btn-box">
+          <a href="javascript:" class="btn" id="open-non-modal-dialog">NON-MODAL DIALOG</a>
+        </div>
+        <div class="dialog2 nice-popup">我是一个非模态 dialog 弹出层内容。<br />我的打开方式是：<br /><span class="highlight">非模态、popin 动画效果、展示关闭按钮、非自动关闭<span></div>
+        <pre>&lt;div class="dialog2 nice-popup">
+  我是一个非模态 dialog 弹出层内容。
+  &lt;br />
+  我的打开方式是：
+  &lt;br />
+  &lt;span class="highlight">非模态、popin 动画效果、展示关闭按钮、非自动关闭&lt;span>
+&lt;/div></pre>
+        <pre class="js">nicePopup.dialog.open('.dialog2')</pre>
+      </div>
+      <div class="section">
+        <h2>用不同的配置打开同一个 Dialog 弹出层</h2>
+        <div class="btn-box">
+          <a href="javascript:" class="btn" id="open-default-dialog">DEFAULT DIALOG</a>
+          <a href="javascript:" class="btn" id="open-config-dialog">CONFIG DIALOG</a>
+        </div>
+        <div class="dialog3 nice-popup">我是那个被折腾的 dialog 弹出层内容。<br />我目前的打开方式是：<br /><span class="highlight"><span></div>
+        <pre>&lt;div class="dialog3 nice-popup">
+  我是那个被折腾的 dialog 弹出层内容。
+  &lt;br />
+  我目前的打开方式是：
+  &lt;br />
+  &lt;span class="highlight">&lt;span>
+&lt;/div></pre>
+        <pre class="js">document.querySelector('.dialog3 .highlight').innerHTML = '模态、popin 动画效果、展示关闭按钮、非自动关闭'
+nicePopup.dialog.open('.dialog3')
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here <a href="https://guides.github.com/features/mastering-markdown/">using GitHub Flavored Markdown</a>, select a template crafted by a designer, and publish. After your page is generated, you can check out the new <code>gh-pages</code> branch locally. If you’re using GitHub Desktop, simply sync your repository and you’ll see the new branch.</p>
-
-<h3>
-<a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We’ve crafted some handsome templates for you to use. Go ahead and click 'Continue to layouts' to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved.</p>
-
-<h3>
-<a id="creating-pages-manually" class="anchor" href="#creating-pages-manually" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Creating pages manually</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://help.github.com/articles/basic-writing-and-formatting-syntax/#mentioning-users-and-teams" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor’s GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out our <a href="https://help.github.com/pages">documentation</a> or <a href="https://github.com/contact">contact support</a> and we’ll help you sort it out.</p>
-
+//config 
+document.querySelector('.dialog3 .highlight').innerHTML = '非模态、无动画效果、隐藏关闭按钮、3 秒后自动关闭'
+nicePopup.dialog.open('.dialog3', {modal: false, closeable: false, effect: '', autoClose: 3000})</pre>
+      </div>
+      <script src="nice-popup.js"></script>
+      <script>
+        function bindClick (selector, fn) {
+          if (!selector) {return}
+          document.querySelector(selector).addEventListener('click', fn)
+        }
+        
+        bindClick('#open-alert', function () {
+          nicePopup.alert.open('打开了一个 Alert 弹出层')
+        })
+        
+        bindClick('#open-success-alert', function () {
+          nicePopup.alert.open('打开了一个成功状态 Alert 弹出层', 'success')
+        })
+        
+        bindClick('#open-wraning-alert', function () {
+          nicePopup.alert.open('打开了一个警告状态 Alert 弹出层', 'wraning')
+        })
+        
+        bindClick('#open-wrong-alert', function () {
+          nicePopup.alert.open('打开了一个错误状态 Alert 弹出层', 'wrong')
+        })
+        
+        bindClick('#open-customize-alert', function () {
+          nicePopup.alert.open('打开了一个自定义状态 Alert 弹出层', 'favor')
+        })
+        
+        bindClick('#open-confirm', function () {
+          nicePopup.confirm.open('是否计数加 1 ？', function (popup) {
+            popup.close()
+            count()
+          })
+        })
+        
+        function count () {
+          if (!this.countNum) {this.countNum = 0}
+          this.countNum++
+          document.getElementById('count').innerHTML = '计数：' + this.countNum
+        }
+        
+        //nicePopup 初始化后才能正常使用 dialog 功能
+        nicePopup.init()
+        
+        bindClick('#open-dialog', function () {
+          nicePopup.dialog.open('.dialog1')
+        })
+        
+        bindClick('#open-non-modal-dialog', function () {
+          nicePopup.dialog.open('.dialog1', {modal: false})
+        })
+        
+        bindClick('#open-default-dialog', function () {
+          document.querySelector('.dialog3 .highlight').innerHTML = '模态、popin 动画效果、展示关闭按钮、非自动关闭'
+          nicePopup.dialog.open('.dialog3')
+        })
+        
+        bindClick('#open-config-dialog', function () {
+          document.querySelector('.dialog3 .highlight').innerHTML = '非模态、无动画效果、隐藏关闭按钮、3 秒后自动关闭'
+          nicePopup.dialog.open('.dialog3', {modal: false, closeable: false, effect: '', autoClose: 3000})
+        })
+      </script>
+      
       <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/ajccom/nicePopup">Nicepopup</a> is maintained by <a href="https://github.com/ajccom">ajccom</a>.</span>
+        <span class="site-footer-owner"><a href="https://github.com/ajccom/nicePopup">Nice Popup</a> is maintained by <a href="https://github.com/ajccom">ajccom</a>.</span>
 
         <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
