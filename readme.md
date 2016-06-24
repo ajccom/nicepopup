@@ -191,6 +191,10 @@ nicePopup.config({
 }
 ```
 
+一些已经设计好的动画效果可以从 [DEMO](https://ajccom.github.io/nicePopup) 页最下面体验。
+
+<br />
+
 ### 居中的实现
 
 居中实现使用了 `position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%)`。
