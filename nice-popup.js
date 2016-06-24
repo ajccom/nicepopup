@@ -152,6 +152,7 @@
     wrapper.querySelector('.popup-close').addEventListener(ev.start, this.closeFn)
     
     wrapper.appendChild(dom)
+    _removeClass(dom, 'nice-popup')
     document.body.appendChild(wrapper)
     this.wrapper = wrapper
     this.dom = dom
@@ -202,7 +203,8 @@
     close: function (isSave) {
       var cfg = this.cfg || defaultConfig
       if (cfg.modal) {
-        mask.close()
+        console.log(1)
+        mask.close && mask.close()
       }
       
       if (cfg.effect) {
@@ -422,9 +424,17 @@
   /**
    * close 关闭弹出层
    * @type {Function}
-   * @param {[String|DOMElement]}
    */
   function close () {
+    queue[0] && queue[0].close()
+  }
+  
+  /**
+   * closeAll 关闭所有弹出层
+   * @type {Function}
+   */
+  function closeAll () {
+    queue = queue.slice(0, 1)
     queue[0] && queue[0].close()
   }
   
@@ -434,6 +444,7 @@
     dialog: dialog,
     init: init,
     close: close,
+    closeAll: closeAll,
     config: config
   }
   

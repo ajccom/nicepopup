@@ -23,6 +23,11 @@
     
     /*dialog style*/
     .dialog1, .dialog2, .dialog3 {padding: 30px;}
+    .dialog4 {padding: 45px 0 85px; width: 400px}
+    @media screen and (max-width:600px) {
+      .dialog4 {width: 300px}
+    }
+    .dialog4 p {padding: 0 4%}
     .highlight {color: red}
     </style>
   </head>
@@ -131,6 +136,20 @@ nicePopup.dialog.open('.dialog3')
 document.querySelector('.dialog3 .highlight').innerHTML = '非模态、无动画效果、隐藏关闭按钮、3 秒后自动关闭'
 nicePopup.dialog.open('.dialog3', {modal: false, closeable: false, effect: '', autoClose: 3000})</pre>
       </div>
+      <hr />
+      <div class="section">
+        <h2>多层级弹出层</h2>
+        <div class="btn-box">
+          <a href="javascript:" class="btn" id="open-mulit-popup">MULIT POPUP</a>
+        </div>
+        <div class="dialog4 nice-popup">
+          <p>您已成功抢到限量版苍老师签名球衣，<br />请问是否先去前往支付？</p>
+          <div class="popup-btns">
+            <a class="ok" href="javascript:">去支付</a>
+            <a class="cancel" href="javascript:">取消</a>
+          </div>
+        </div>
+      </div>
       <script src="nice-popup.js"></script>
       <script>
         function bindClick (selector, fn) {
@@ -190,6 +209,18 @@ nicePopup.dialog.open('.dialog3', {modal: false, closeable: false, effect: '', a
         bindClick('#open-config-dialog', function () {
           document.querySelector('.dialog3 .highlight').innerHTML = '非模态、无动画效果、隐藏关闭按钮、3 秒后自动关闭'
           nicePopup.dialog.open('.dialog3', {modal: false, closeable: false, effect: '', autoClose: 3000})
+        })
+        
+        bindClick('.dialog4 .ok', function () {
+          nicePopup.alert.open('您的举动已经被您家贤内助发现，<br />现正三倍速向您移动中...')
+        })
+        
+        bindClick('.dialog4 .cancel', function () {
+          nicePopup.close()
+        })
+        
+        bindClick('#open-mulit-popup', function () {
+          nicePopup.dialog.open('.dialog4')
         })
       </script>
       
