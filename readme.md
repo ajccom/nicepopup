@@ -105,7 +105,8 @@ confirm | - | 属性，confirm 弹出层
 dialog | - | 属性，dialog 弹出层
 config | Config:Object | 方法，修改默认配置
 close | - | 方法，关闭当前一个弹出层
-init | - | 方法，初始化弹出层
+closeAll | - | 方法，关闭所有弹出层
+init | - | 方法，初始化 dialog 弹出层
 
 <br />
 

@@ -22,7 +22,7 @@
 .alert-content.success {color: green}
 .alert-content.wraning {color: #9E9E04}
 .alert-content.wrong {color: red}
-.nice-popup .popup-btns {position: absolute; bottom: 0; left: 0; padding: 5px 0; border-top: 1px solid #bbb; text-align: center; width: 100%}
+.nice-popup .popup-btns {position: absolute; bottom: 0; left: 0; padding: 5px 0; border-top: 1px solid #bbb; text-align: center; width: 100%; font-size: 0}
 .nice-popup .popup-btns .ok,
 .nice-popup .popup-btns .cancel {cursor: pointer; display: inline-block; width: 40%; height: 40px; line-height: 40px; margin: 0 5%; border-radius: 10px; font-size: 16px; font-family: '微软雅黑'; border: 1px solid #fff; text-decoration: none; box-sizing: border-box}
 .nice-popup .popup-btns .ok:hover,
