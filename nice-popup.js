@@ -32,11 +32,14 @@
     } else {
       dom.startEvent = function (e) {
         e.stopPropagation()
-        fn.time = +new Date
+        dom.time = +new Date
+        dom.startX = e.changedTouches[0].pageX
+        dom.startY = e.changedTouches[0].pageY
       }
       dom.endEvent = function (e) {
         e.stopPropagation()
-        if (+new Date - fn.time < 200) {
+        e.preventDefault()
+        if (+new Date - dom.time < 200 && Math.abs(e.changedTouches[0].pageX - dom.startX) < 5 && Math.abs(e.changedTouches[0].pageY - dom.startY) < 5) {
           fn(e)
         }
       }
