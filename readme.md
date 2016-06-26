@@ -2,7 +2,7 @@
 
 一款简单的弹出层组件，支持队列式弹出，对读屏软件有较好支持。
 
-[Demo 演示](https://ajccom.github.io/nicePopup)
+[Demo 演示](https://ajccom.github.io/nicepopup)
 
 -----------------------------------------------
 
