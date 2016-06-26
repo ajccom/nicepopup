@@ -10,7 +10,7 @@ body {position: relative}
 .alert-content,
 .confirm-content {width: 400px; padding: 45px 0 85px; text-align: center; position: relative}
 @media screen and (max-width:600px) {
-  .popup-ready {width: 80%}
+  .popup-ready {width: 90%}
   .alert-content,
   .confirm-content {width: 100%;}
 }
