@@ -31,13 +31,12 @@
       dom.addEventListener(ev.click, dom.clickEvent)
     } else {
       dom.startEvent = function (e) {
-        e.stopPropagation()
+        e.preventDefault()
         dom.time = +new Date
         dom.startX = e.changedTouches[0].pageX
         dom.startY = e.changedTouches[0].pageY
       }
       dom.endEvent = function (e) {
-        e.stopPropagation()
         e.preventDefault()
         if (+new Date - dom.time < 200 && Math.abs(e.changedTouches[0].pageX - dom.startX) < 5 && Math.abs(e.changedTouches[0].pageY - dom.startY) < 5) {
           fn(e)
