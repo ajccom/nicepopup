@@ -128,8 +128,7 @@
    */
   var mask = (function () {
     var dom = document.createElement('div'),
-      isReady = false,
-      currentEffect = ''
+      isReady = false
     
     /**
      * open 显示遮罩层

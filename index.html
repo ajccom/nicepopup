@@ -23,9 +23,10 @@
     
     /*dialog style*/
     .dialog1, .dialog2, .dialog3, .dialog5 {padding: 30px;}
-    .dialog4 {padding: 45px 0 85px; width: 400px}
+    .dialog4, .dialog6 {padding: 45px 0 85px; width: 400px}
+    .dialog6 {padding-left: 5px}
     @media screen and (max-width:600px) {
-      .dialog4 {width: 300px}
+      .dialog4, .dialog6 {width: 300px}
     }
     .dialog4 p {padding: 0 4%}
     .highlight {color: red}
@@ -172,6 +173,19 @@ nicePopup.close()</pre>
           <span class="highlight"></span>
         </div>
       </div>
+      <div class="section">
+        <h2>带有输入框的 Dialog 弹出层</h2>
+        <p id="output"></p>
+        <div class="btn-box">
+          <a href="javascript:" class="btn" id="open-dialog-with-input">DIALOG</a>
+        </div>
+        <div class="dialog6 nice-popup">
+          请输入内容：<input id="input" type="text" />
+          <div class="popup-btns">
+            <a class="ok" href="javascript:">确定</a>
+          </div>
+        </div>
+      </div>
       <script src="nice-popup.js"></script>
       <script>
         function bindClick (selector, fn) {
@@ -265,6 +279,15 @@ nicePopup.close()</pre>
           nicePopup.dialog.open('.dialog5', {effect: 'fall'})
         })
         
+        bindClick('.dialog6 .ok', function () {
+          var v = document.getElementById('input').value
+          document.getElementById('output').innerHTML = v
+          nicePopup.close()
+        })
+        
+        bindClick('#open-dialog-with-input', function () {
+          nicePopup.dialog.open('.dialog6')
+        })
       </script>
       
       <footer class="site-footer">
