@@ -14,8 +14,50 @@
     },
     ev = {
       click: 'click',
-      start: _mobileCheck ? (_pointCheck ? _prefixPointerEvent('pointerdown') : 'touchstart' ) : 'click'
+      start: _mobileCheck ? (_pointCheck ? _prefixPointerEvent('pointerdown') : 'touchstart' ) : 'mousedown',
+      move: _mobileCheck ? (_pointCheck ? _prefixPointerEvent('pointermove') : 'touchmove') : 'mousemove',
+      end: _mobileCheck ? (_pointCheck ? _prefixPointerEvent('pointerup') : 'touchend') : 'mouseup',
+      cancel: _mobileCheck ? (_pointCheck ? _prefixPointerEvent('pointercancel') : 'touchcancel') : 'mousecancel'
     }
+    
+  /**
+   * _tap 点击事件，辅助函数
+   * @param {DOMElement}
+   * @param {Function}
+   */
+  function _tap (dom, fn) {
+    if (!_mobileCheck) {
+      dom.clickEvent = fn
+      dom.addEventListener(ev.click, dom.clickEvent)
+    } else {
+      dom.startEvent = function (e) {
+        e.stopPropagation()
+        fn.time = +new Date
+      }
+      dom.endEvent = function (e) {
+        e.stopPropagation()
+        if (+new Date - fn.time < 200) {
+          fn(e)
+        }
+      }
+      dom.addEventListener(ev.start, dom.startEvent)
+      dom.addEventListener(ev.end, dom.endEvent)
+    }
+  }
+  
+  /**
+   * _untap 解除点击事件，辅助函数
+   * @param {DOMElement}
+   * @param {Function}
+   */
+  function _untap (dom) {
+    if (!_mobileCheck) {
+      dom.removeEventListener(ev.click, dom.clickEvent)
+    } else {
+      dom.removeEventListener(ev.start, dom.startEvent)
+      dom.removeEventListener(ev.end, dom.endEvent)
+    }
+  }
   
   /**
    * _addClass 添加类，辅助函数
@@ -100,14 +142,12 @@
         _addClass(dom, 'nice-mask')
         document.body.appendChild(dom)
         mask.close = close
-        dom.addEventListener(ev.start, function () {
-          queue[0].close()
+        _tap(dom, function () {
+          queue[0] && queue[0].close()
         })
       }
-      setTimeout(function () {
-        _addClass(dom, 'show')
-        _removeClass(dom, 'reverse')
-      }, 0)
+      _addClass(dom, 'show')
+      _removeClass(dom, 'reverse')
     }
     
     /**
@@ -146,11 +186,9 @@
     wrapper.className = 'nice-popup popup-ready'
     wrapper.innerHTML = '<a href="javascript:" class="popup-close">close</a>'
     
-    this.closeFn = function () {
+    _tap(wrapper.querySelector('.popup-close'), function () {
       that.close()
-    }
-    wrapper.querySelector('.popup-close').addEventListener(ev.start, this.closeFn)
-    
+    })
     wrapper.appendChild(dom)
     _removeClass(dom, 'nice-popup')
     document.body.appendChild(wrapper)
@@ -289,7 +327,7 @@
       alertPopup.okFn = function () {
         alertPopup.close()
       }
-      dom.querySelector('.ok').addEventListener(ev.start, alertPopup.okFn)
+      _tap(dom.querySelector('.ok'), alertPopup.okFn)
       dom.className = 'alert-content'
       _addClass(dom, type || '')
       txt && (alertPopup.txtContent.innerHTML = txt)
@@ -344,9 +382,8 @@
       confirmPopup.cancelFn = function () {
         confirmPopup.close()
       }
-      dom.querySelector('.ok').addEventListener(ev.start, confirmPopup.okFn)
-      
-      dom.querySelector('.cancel').addEventListener(ev.start, confirmPopup.cancelFn)
+      _tap(dom.querySelector('.ok'), confirmPopup.okFn)
+      _tap(dom.querySelector('.cancel'), confirmPopup.cancelFn)
       txt && (confirmPopup.txtContent.innerHTML = txt)
       confirmPopup.open()
       
@@ -383,10 +420,10 @@
     
     var ok = popup.dom.querySelector('.ok'),
       cancel = popup.dom.querySelector('.cancel'),
-      close = popup.dom.querySelector('.popup-close')
-    ok && ok.removeEventListener(ev.start, popup.okFn)
-    cancel && cancel.removeEventListener(ev.start, popup.cancelFn)
-    close && close.removeEventListener(ev.start, popup.closeFn)
+      close = popup.wrapper.querySelector('.popup-close')
+    ok && _untap(ok)
+    cancel && _untap(cancel)
+    close && _untap(close)
     
     document.body.removeChild(popup.wrapper)
     
